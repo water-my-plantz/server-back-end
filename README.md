@@ -2,7 +2,7 @@
 
 Resource for Heroku and initial set up from scratch: https://www.youtube.com/watch?v=-mcM5GB8OIA&t=1901s
 
-Resource for creating a database from scratch, from unit 4.2: {
+    Resource for creating a database from scratch, from unit 4.2: {
 
     Database from scratch: 
     
@@ -17,7 +17,7 @@ Resource for creating a database from scratch, from unit 4.2: {
     Create Table Relationships Using Knex:
     Guided: https://www.youtube.com/watch?v=G0lEIBHxI1I 
     Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
-}
+    }
 
 
 
