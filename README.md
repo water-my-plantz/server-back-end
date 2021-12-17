@@ -3,8 +3,6 @@
 Resource for Heroku and initial set up from scratch: https://www.youtube.com/watch?v=-mcM5GB8OIA&t=1901s
 
     Resource for creating a database from scratch, from unit 4.2: {
-
-    Database from scratch: 
     
     Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
 
