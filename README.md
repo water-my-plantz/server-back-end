@@ -6,14 +6,14 @@ Resource for Heroku and initial set up from scratch: https://www.youtube.com/wat
     
     Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
 
-    Schema, Migrations, Seeds
+    Schema, Migrations, Seeds:
     Database Schema Design Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
     Database Schema Design Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
 
     &&
 
     Create Table Relationships Using Knex:
-    Guided: https://www.youtube.com/watch?v=G0lEIBHxI1I 
+    Guided Project: https://www.youtube.com/watch?v=G0lEIBHxI1I 
     Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
     }
 
