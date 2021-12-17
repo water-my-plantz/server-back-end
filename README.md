@@ -1,7 +1,6 @@
 ## **RESOURCES***
 
 Resource for Heroku and initial set up from scratch: https://www.youtube.com/watch?v=-mcM5GB8OIA&t=1901s
-https://www.youtube.com/watch?v=IDPswEgDino
 
 Resource for creating a database from scratch, from unit 4.2: {
 
