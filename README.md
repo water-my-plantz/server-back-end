@@ -7,8 +7,8 @@ Resource for creating a database from scratch, from unit 4.2:
 Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
 
 Schema, Migrations, Seeds:
-Database Schema Design Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
-Database Schema Design Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
+Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
+Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
 
 &&
 
