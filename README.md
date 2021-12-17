@@ -8,12 +8,14 @@ Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
 
 Schema, Migrations, Seeds:
 Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
+
 Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
 
 &&
 
 Create Table Relationships Using Knex:
 Guided Project: https://www.youtube.com/watch?v=G0lEIBHxI1I 
+
 Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
 
 
