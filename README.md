@@ -2,20 +2,20 @@
 
 Resource for Heroku and initial set up from scratch: https://www.youtube.com/watch?v=-mcM5GB8OIA&t=1901s
 
-    Resource for creating a database from scratch, from unit 4.2: {
-    
-    Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
+Resource for creating a database from scratch, from unit 4.2: {
 
-    Schema, Migrations, Seeds:
-    Database Schema Design Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
-    Database Schema Design Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
+Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
 
-    &&
+Schema, Migrations, Seeds:
+Database Schema Design Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
+Database Schema Design Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
 
-    Create Table Relationships Using Knex:
-    Guided Project: https://www.youtube.com/watch?v=G0lEIBHxI1I 
-    Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
-    }
+&&
+
+Create Table Relationships Using Knex:
+Guided Project: https://www.youtube.com/watch?v=G0lEIBHxI1I 
+Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
+}
 
 
 
