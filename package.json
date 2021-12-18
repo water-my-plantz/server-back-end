@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "server": "nodemon index.js",
+    "up": "knex migrate:up",
+    "down": "knex migrate:down",
+    "seed": "knex seed:run"
   },
   "keywords": [],
   "author": "Aaron Gabriel",
@@ -19,6 +22,8 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
-    "morgan": "^1.10.0"
+    "knex": "^0.95.14",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.0.2"
   }
 }
