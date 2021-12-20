@@ -28,6 +28,16 @@ exports.down = async function (knex) {
 
 // npm run up creates the db
 
+
+
+
+
+
+
+
+
+
+
 // FROM LAST BUILD:
 
 // exports.up = function (knex) {

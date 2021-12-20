@@ -7,9 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "server": "nodemon index.js",
-    "up": "knex migrate:up",
-    "down": "knex migrate:down",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "migrateh": "heroku run knex migrate:latest -a build-deploy",
+    "rollbackh": "heroku run knex migrate:rollback -a build-deploy",
+    "databaseh": "heroku pg:psql -a build-deploy",
+    "seedh": "heroku run knex seed:run -a build-deploy",
+    "deploy": "git push heroku main"
+  },
+  "engines": {
+    "node": "16.13.1"
   },
   "keywords": [],
   "author": "Aaron Gabriel",
@@ -20,10 +28,11 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
+    "eslint": "^8.5.0",
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "knex": "^0.95.14",
     "morgan": "^1.10.0",
-    "sqlite3": "^5.0.2"
+    "pg": "8.7.1"
   }
 }

@@ -54,3 +54,68 @@ With an easy to use interface for creating a plant watering schedule tailored to
 1. Authenticated `user` can set up push notifications to be triggered when an `h2oFrequency` of any `plant` arrives / has elapsed. 
 2. Implement a feature that allows an authenticated `user` to see an appropriate suggested `h2oFrequency` based on `species` using the API of your choice. 
 3. Authenticated `user` can upload `image`s of a `plant`. If no user `image` is provided, a placeholder `image` of a plant of the same `species` populates the view.
+
+
+
+_________________________________________
+
+
+From build week scaffolding video:
+
+{
+  "name": "build-week-scaffolding-node",
+  "version": "1.0.0",
+
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "seed": "knex seed:run",
+
+    "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
+
+
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "migrateh": "heroku run knex migrate:latest -a YOUR_HEROKU_APP_NAME",
+    "rollbackh": "heroku run knex migrate:rollback -a YOUR_HEROKU_APP_NAME",
+    "databaseh": "heroku pg:psql -a YOUR_HEROKU_APP_NAME",
+    "seedh": "heroku run knex seed:run -a YOUR_HEROKU_APP_NAME",
+    "deploy": "git push heroku main"
+  },
+  "engines": {
+    "node": "16.13.1"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "cors": "2.8.5",
+    "dotenv": "10.0.0",
+    "express": "4.17.1",
+    "helmet": "4.6.0",
+    "knex": "0.95.14",
+    "knex-cleaner": "1.3.1",
+    "pg": "8.7.1"
+  },
+  "devDependencies": {
+    "@types/jest": "27.0.3",
+    "cross-env": "7.0.3",
+    "eslint": "8.4.1",
+    "jest": "27.4.4",
+    "nodemon": "2.0.15",
+    "supertest": "6.1.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloominstituteoftechnology/build-week-scaffolding-node.git"
+  }
+}
+
+
+
+
+
+// _____________________
+
+My old dependencies in case all else fails...
+
+    "up": "knex migrate:up",
+    "down": "knex migrate:down",
