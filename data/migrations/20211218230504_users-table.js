@@ -23,7 +23,6 @@ exports.up = async function (knex) {
 exports.down = async function (knex) {
     await knex.schema.dropTableIfExists('users')
     await knex.schema.dropTableIfExists('plants')
-
 };
 
 // npm run up creates the db
