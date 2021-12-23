@@ -3,12 +3,17 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 
+const authRouter = require('./auth/auth-router');
+
 const server = express();
 server.use(express.json());
 
 server.use(cors());
 server.use(morgan('dev'));
 server.use(helmet());
+
+server.use('/api/auth', authRouter);
+
 
 
 server.get('/', (req, res) => {
@@ -18,6 +23,14 @@ server.get('/', (req, res) => {
         time: new Date().toLocaleString()
     })
 })
+
+server.use((err, req, res, next) => { // eslint-disable-line
+    res.status(err.status || 500).json({
+        message: err.message,
+        stack: err.stack,
+        status: err.status
+    });
+});
 
 
 module.exports = server;
