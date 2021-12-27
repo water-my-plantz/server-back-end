@@ -57,6 +57,30 @@ With an easy to use interface for creating a plant watering schedule tailored to
 
 
 
+
+________________________________________
+
+// Simplest way to check a login, saving this for future reference.
+
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+
+    try {
+        const user = await Users.findBy({ username })   // console.log(user) = { id: 3, username: 'Cato', password: '1234' }
+
+        if (username == user.username) {
+            res.status(400).json(user)
+        }
+    }
+    catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
+
+
+
 _________________________________________
 
 

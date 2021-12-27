@@ -22,8 +22,6 @@ router.get('/', (req, res) => {
 });
 
 
-
-
 router.post('/register', checkValidRegister, async (req, res) => {
     console.log('register route 1')
     const { username, password } = req.body;       // Take whatever the user types
@@ -54,13 +52,18 @@ router.post('/register', checkValidRegister, async (req, res) => {
 
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
+    console.log('username', username) // Aurelius
 
 
     try {
         const user = await Users.findBy({ username })   // console.log(user) = { id: 3, username: 'Cato', password: '1234' }
 
-        if (username == user.username) {
-            res.status(400).json(user)
+        console.log('user', user) // object of id, username, password.
+
+        if (user && bcrypt.compareSync(password, user.password)) {
+            res.status(200).json({ message: `Welcome ${user.username}`, user })
+        } else {
+            res.status(401).json({ message: 'Invalid Credentials' })
         }
     }
     catch (err) {
