@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Users = require('./auth-model')
+const bcrypt = require('bcryptjs')
 
 const { checkValidRegister } = require('../middleware/restricted');
 
@@ -21,23 +22,32 @@ router.get('/', (req, res) => {
 });
 
 
+
+
 router.post('/register', checkValidRegister, async (req, res) => {
     console.log('register route 1')
     const { username, password } = req.body;       // Take whatever the user types
     const user = { username, password }
 
+    console.log('user.password', user.password)
+    const hash = bcrypt.hashSync(user.password, 6);
+    user.password = hash;
+
+
     try {
         console.log('register route 2')
-        console.log(user)
+        console.log('user', user)
 
         const createdUser = await Users.create(user) // create = Knex* db('users').insert(user)
 
         console.log('register route 3')
-        res.status(201).json(createdUser)            // json = createdUser
+        res.status(201).json(createdUser)
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 })
+
+
 
 
 
@@ -47,7 +57,7 @@ router.post('/login', async (req, res) => {
 
 
     try {
-        const user = await Users.findBy({ username })
+        const user = await Users.findBy({ username })   // console.log(user) = { id: 3, username: 'Cato', password: '1234' }
 
         if (username == user.username) {
             res.status(400).json(user)
@@ -57,8 +67,6 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 })
-
-
 
 
 
