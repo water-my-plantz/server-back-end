@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 
 const authRouter = require('./auth/auth-router');
+const plantsRouter = require('./plants/plants-router');
 
 const server = express();
 server.use(express.json());
@@ -13,6 +14,7 @@ server.use(morgan('dev'));
 server.use(helmet());
 
 server.use('/api/auth', authRouter);
+server.use('/api/plants', plantsRouter);
 
 
 

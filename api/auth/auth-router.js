@@ -51,17 +51,14 @@ router.post('/register', checkValidRegister, async (req, res) => {
 })
 
 
-
-
 router.post('/login', async (req, res) => {
-    const { username, password } = req.body;            // Aurelius 1234
+    const { username, password } = req.body;            // .logs Aurelius 1234
 
     try {
-        const user = await Users.findBy({ username })   // { id: 3, username: 'Aurelius', password: '1234' }
+        const user = await Users.findBy({ username })   // .logs = { id: 3, username: 'Aurelius', password: '1234' }
 
         if (user && bcrypt.compareSync(password, user.password)) {
-
-            const token = generateToken(user);          // eyJhbGciOiJIUzI1NiIsInR5cCI6...
+            const token = generateToken(user);          // .logs = eyJhbGciOiJIUzI1NiIsInR5cCI6...
             res.status(200).json({ message: `Welcome back ${user.username}!`, token })
 
         } else {
@@ -73,16 +70,16 @@ router.post('/login', async (req, res) => {
     }
 })
 
-function generateToken(user) {
+function generateToken(user) {                          // Token generator. 
     const payload = {
-        sub: user.id,               // subject, normally the user id
-        username: user.username,    // Custom property
-        role: user.role,            // ????????????????????????
+        sub: user.id,                                   // subject, normally the user id
+        username: user.username,                        // Custom property
+        role: user.role,                                // ????????????????????????
     }
     const options = {
         expiresIn: '12d',
     }
-    return jwt.sign(payload, JWT_SECRET, options); // JWT_SECRET is an import
+    return jwt.sign(payload, JWT_SECRET, options);      // JWT_SECRET is an import
 }
 
 
