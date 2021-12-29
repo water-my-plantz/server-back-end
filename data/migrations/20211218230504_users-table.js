@@ -1,6 +1,7 @@
 
 // If you add a table you have to npm run down, then npm run up
 
+// npm run up creates the db (not on this build)
 // `user` can sign-up / create an account by providing a unique `username`, a valid mobile `phoneNumber` and a `password`. 
 
 // Production never has migrate down, only up.
@@ -23,7 +24,23 @@ exports.down = async function (knex) {
     await knex.schema.dropTableIfExists('plants')
 };
 
-// npm run up creates the db
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

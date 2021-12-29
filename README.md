@@ -26,6 +26,35 @@ Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
 -----------------------------------------------------------------------------------
 
 
+**ENDPOINTS** 
+
+**USERS**
+
+Gets all users:
+
+GET = localhost:9000/api/auth
+
+Registers a new user:
+
+POST = localhost:9000/api/auth/register
+
+Log in user:
+
+POST = localhost:9000/api/plants/addplant
+
+
+**PLANTS**
+
+Gets all plant information:
+
+GET = localhost:9000/api/plants
+
+Adds plant information, "species, nickname, h2oFrequency":
+
+POST = localhost:9000/api/plants/addplant
+
+
+
 
 
 ## ☝️ **Pitch**
