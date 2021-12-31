@@ -20,26 +20,20 @@ router.get('/', (req, res) => {
 });
 
 
-
+// Create plant data
 router.post('/addplant', async (req, res) => {
-    console.log('register route 1', req.body)
-    // const { species, nickname, h2oFrequency } = req.body;       // Take whatever the user types
-    // const plantInfo = { species, nickname, h2oFrequency }
+    const { species, nickname, water_frequency, plant_id } = req.body;    // Take whatever the user types
+    const plantInfo = { species, nickname, water_frequency, plant_id }    // .logs = {species: 'testing species name', nickname: 'testing nickname', water_frequency: undefined, plant_id: 100}
 
-    // console.log('plantInfo', plantInfo.species)
+    try {
+        // console.log('random word inside try block')
 
-    // try {
-    //     console.log('register route 2')
-    //     console.log('plantInfo = ', plantInfo)
+        const createdPlant = await Plants.create(plantInfo)
+        res.status(201).json(createdPlant)
 
-    //     const createdPlant = await Plants.create(plantInfo)
-
-    //     console.log('register route 3')
-    //     res.status(201).json(createdPlant)
-
-    // } catch (err) {
-    //     res.status(500).json({ message: err.message });
-    // }
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 })
 
 

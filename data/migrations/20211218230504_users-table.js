@@ -13,9 +13,11 @@ exports.up = async function (knex) {
         table.text('password').notNullable()
     })
         .createTable('plants', table => {
+            table.increments()
+            table.integer('plant_id').notNullable()
             table.text('species')
             table.text('nickname')
-            table.text('h2oFrequency')
+            table.text('water_frequency')
         })
 };
 

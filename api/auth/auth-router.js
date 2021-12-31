@@ -2,16 +2,11 @@ const router = require('express').Router();
 const Users = require('./auth-model')
 
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')              // installed this library // used in token builder
 const { JWT_SECRET } = require('../../secrets'); // Some have BCRYPT_ROUNDS, not sure why
 
+const { checkValidRegister } = require('../middleware/restricted'); // This is a middleware
 
-
-const { checkValidRegister } = require('../middleware/restricted');
-
-// const bcrypt = require('bcryptjs');                     // This goes wherever we use bcrypt
-// const jwt = require('jsonwebtoken');                    // installed this library // used in tokenbuilder
-// const { JWT_SECRET } = require('../../config/secrets'); // Some have BCRYPT_ROUNDS, not sure why
 
 
 // Gets all users = localhost:9000/api/auth
@@ -27,6 +22,7 @@ router.get('/', (req, res) => {
 });
 
 
+// Register
 router.post('/register', checkValidRegister, async (req, res) => {
     console.log('register route 1')
     const { username, password } = req.body;       // Take whatever the user types
@@ -35,7 +31,6 @@ router.post('/register', checkValidRegister, async (req, res) => {
     console.log('user.password', user.password)
     const hash = bcrypt.hashSync(user.password, 6);
     user.password = hash;
-
 
     try {
         console.log('register route 2')
@@ -50,7 +45,7 @@ router.post('/register', checkValidRegister, async (req, res) => {
     }
 })
 
-
+// Login, uses a token generator
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;            // .logs Aurelius 1234
 
@@ -70,6 +65,29 @@ router.post('/login', async (req, res) => {
     }
 })
 
+// Get user by id
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    console.log('@@@@@@@@@@@ id', id)
+
+    try {
+        const user = await Users.findById(id);
+        if (!user) {
+            res.status(404).json({ message: 'User not found' })
+        } else {
+            res.status(200).json(user)
+        }
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
+
+
+
+
+
+
 function generateToken(user) {                          // Token generator. 
     const payload = {
         sub: user.id,                                   // subject, normally the user id
@@ -81,11 +99,6 @@ function generateToken(user) {                          // Token generator.
     }
     return jwt.sign(payload, JWT_SECRET, options);      // JWT_SECRET is an import
 }
-
-
-
-
-
 
 
 
