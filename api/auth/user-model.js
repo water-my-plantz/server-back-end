@@ -31,11 +31,17 @@ async function create(argTask) {
 }
 
 
+
+
+
+
+
+
+// delete function  // In SQL it looks like: DELETE FROM users WHERE id = 2;
 async function remove(id) {
-
-    return
+    const deletedUser = await db('users').where({ id: id }).del()
+    return deletedUser;
 }
-
 
 
 

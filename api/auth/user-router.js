@@ -88,6 +88,35 @@ router.get('/:id', async (req, res) => {
 
 
 
+// Delete user by id
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+
+    console.log('id', id)
+
+    try {
+        const user = await Users.remove(id);
+        console.log('bleh')
+        console.log('user', user)
+
+        if (!user) {
+            res.status(404).json({ message: 'User not found' })
+        } else {
+            res.status(200).json('USER DELETED!')
+        }
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
+
+
+
+
+
+
+
+
 function generateToken(user) {                          // Token generator. 
     const payload = {
         sub: user.id,                                   // subject, normally the user id
