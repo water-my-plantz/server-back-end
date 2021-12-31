@@ -19,6 +19,23 @@ router.get('/', (req, res) => {
         })
 });
 
+// Get by plant id = localhost:9000/api/plants/:id
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    console.log('@@@@@@@@@@@ id', id)
+
+    try {
+        const plantData = await Plants.findById(id);
+        if (!plantData) {
+            res.status(404).json({ message: 'User not found' })
+        } else {
+            res.status(200).json(plantData)
+        }
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
 
 // Create plant data
 router.post('/addplant', async (req, res) => {
@@ -27,26 +44,14 @@ router.post('/addplant', async (req, res) => {
 
     try {
         // console.log('random word inside try block')
-
         const createdPlant = await Plants.create(plantInfo)
         res.status(201).json(createdPlant)
-
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 })
 
 
-
-// // Add plant
-// router.post('/', reqBody, async (req, res, next) => {
-//     try {
-//         let plant = await Plant.add(req.body)
-//         res.status(201).json(plant)
-//     } catch (err) {
-//         next({ apiCode: 500, apiMessage: 'Error Creating Plant!', ...err })
-//     }
-// })
 
 
 

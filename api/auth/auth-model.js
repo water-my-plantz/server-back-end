@@ -4,7 +4,8 @@ module.exports = {
     findById,
     create,
     getAll,
-    findBy
+    findBy,
+    remove
 }
 
 
@@ -30,7 +31,10 @@ async function create(argTask) {
 }
 
 
+async function remove(id) {
 
+    return
+}
 
 
 
