@@ -3,7 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 
-const authRouter = require('./auth/auth-router');
+const userRouter = require('./auth/user-router');
 const plantsRouter = require('./plants/plants-router');
 
 const server = express();
@@ -13,8 +13,8 @@ server.use(cors());
 server.use(morgan('dev'));
 server.use(helmet());
 
-server.use('/api/auth', authRouter);
-server.use('/api/plants', plantsRouter);
+server.use('/user', userRouter);
+server.use('/plants', plantsRouter);
 
 
 
