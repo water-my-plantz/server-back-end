@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Users = require('./auth-model')
+const Users = require('./user-model')
 
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')              // installed this library // used in token builder

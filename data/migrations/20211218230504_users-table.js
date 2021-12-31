@@ -11,6 +11,7 @@ exports.up = async function (knex) {
         table.increments() // auto-incrementing id; primary key     
         table.text('username', 128).unique().notNullable()
         table.text('password').notNullable()
+        table.text('phone_number', 128)
     })
         .createTable('plants', table => {
             table.increments()
