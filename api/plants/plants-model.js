@@ -4,7 +4,8 @@ module.exports = {
     findById,
     create,
     getAll,
-    findBy
+    findBy,
+    remove
 }
 
 
@@ -34,6 +35,12 @@ async function create(argTask) {
 //     const [id] = await db('plants').returning('id').insert(plant)
 //     return findById(id)
 // }
+
+// delete function  // In SQL it looks like: DELETE FROM users WHERE id = 2;
+async function remove(id) {
+    const deletedPlantData = await db('plants').where({ id: id }).del()
+    return deletedPlantData;
+}
 
 
 

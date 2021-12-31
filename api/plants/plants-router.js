@@ -53,6 +53,30 @@ router.post('/addplant', async (req, res) => {
 
 
 
+// Delete plant data by id
+router.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+
+    console.log('id', id)
+
+    try {
+        const plantData = await Plants.remove(id);
+        console.log('bleh')
+        console.log('user', plantData)
+
+        if (!plantData) {
+            res.status(404).json({ message: 'Plant information not found' })
+        } else {
+            res.status(200).json('PLANT INFORMATION DELETED!')
+        }
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
+
+
+
 
 
 
