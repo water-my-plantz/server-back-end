@@ -283,7 +283,7 @@ async function remove(id) {
 // // -- How to update multiple fields. Note, no trailing commas.
 
 // // UPDATE posts
-// // SET title = 'yeet', contents = 'jajajajaja'
+// // SET title = 'words', contents = 'more words'
 // // WHERE id = 1;
 
 

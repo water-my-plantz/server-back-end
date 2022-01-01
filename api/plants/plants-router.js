@@ -1,10 +1,5 @@
 const router = require('express').Router();
-
 const Plants = require('./plants-model');
-
-
-
-
 
 
 // Gets all plant info = localhost:9000/api/plants
@@ -18,6 +13,7 @@ router.get('/', (req, res) => {
             res.status(500).json({ message: 'Failed to get users', error })
         })
 });
+
 
 // Get by plant id = localhost:9000/api/plants/:id
 router.get('/:id', async (req, res) => {
@@ -52,7 +48,6 @@ router.post('/addplant', async (req, res) => {
 })
 
 
-
 // Delete plant data by id
 router.delete('/:id', async (req, res) => {
     const id = req.params.id;
@@ -61,7 +56,6 @@ router.delete('/:id', async (req, res) => {
 
     try {
         const plantData = await Plants.remove(id);
-        console.log('bleh')
         console.log('user', plantData)
 
         if (!plantData) {
@@ -74,6 +68,24 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+// Update plant data by id
+router.put('/:id', async (req, res) => {
+    console.log('req.body', req.body)
+    const id = req.params.id;
+    const { species, nickname, water_frequency, plant_id, } = req.body;    // Take whatever the user types
+
+    const plantInfo = { species, nickname, water_frequency, plant_id }    // .logs = {species: 'testing species name', nickname: 'testing nickname', water_frequency: undefined, plant_id: 100}
+
+    console.log('plantInfo', plantInfo)
+
+    try {
+        console.log('random word inside try block')
+        const updatedPlant = await Plants.updateById(id, plantInfo)
+        res.status(201).json(updatedPlant)
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
 
 
 
