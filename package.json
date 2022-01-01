@@ -10,10 +10,10 @@
     "seed": "knex seed:run",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
-    "migrateh": "heroku run knex migrate:latest -a build-deploy",
-    "rollbackh": "heroku run knex migrate:rollback -a build-deploy",
-    "databaseh": "heroku pg:psql -a build-deploy",
-    "seedh": "heroku run knex seed:run -a build-deploy",
+    "migrateh": "heroku run knex migrate:latest -a water-my-plants-fullstack-api",
+    "rollbackh": "heroku run knex migrate:rollback -a water-my-plants-fullstack-api",
+    "databaseh": "heroku pg:psql -a water-my-plants-fullstack-api",
+    "seedh": "heroku run knex seed:run -a water-my-plants-fullstack-api",
     "deploy": "git push heroku main"
   },
   "engines": {
