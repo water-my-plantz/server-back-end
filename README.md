@@ -1,57 +1,44 @@
-## **RESOURCES***
-
-Resource for Heroku and initial set up from scratch: https://www.youtube.com/watch?v=-mcM5GB8OIA&t=1901s
-
-Resource for creating a database from scratch, from unit 4.2: 
-
-Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
-
-Schema, Migrations, Seeds:
-Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
-
-Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
-
-&&
-
-Create Table Relationships Using Knex:
-Guided Project: https://www.youtube.com/watch?v=G0lEIBHxI1I 
-
-Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
-
-
-
-
-
-
------------------------------------------------------------------------------------
-
-
 **ENDPOINTS** 
 
-**USERS**
-
-Gets all users:
-
-GET = localhost:9000/api/auth
-
-Registers a new user:
-
-POST = localhost:9000/api/auth/register
-
-Log in user:
-
-POST = localhost:9000/api/plants/addplant
+**___USERS___**
 
 
-**PLANTS**
+**Gets all users:**
+GET = localhost:9000/user
 
-Gets all plant information:
+**Get user by id:**
+GET = localhost:9000/user/:id
 
-GET = localhost:9000/api/plants
+**Create a new user:**
+POST = localhost:9000/user/register
 
-Adds plant information, "species, nickname, h2oFrequency":
+**Log in user:**
+POST = localhost:9000/user/login
 
-POST = localhost:9000/api/plants/addplant
+**Delete user by id:**
+DELETE = localhost:9000/user/:id
+
+
+**___PLANTS___**
+
+**Gets all plant information:**
+GET = localhost:9000/plants
+
+**Get plant information by id:**
+GET = localhost:9000/plants/:id
+
+**Create plant information:**
+POST = localhost:9000/plants/addplant
+
+**UPDATE plant information by id:**
+PUT = localhost:9000/plants/:id
+
+**Delete plant information by id:**
+DELETE = localhost:9000/plants/:id
+
+
+
+**_________________________________________________**
 
 
 
@@ -172,3 +159,33 @@ My old dependencies in case all else fails...
 
     "up": "knex migrate:up",
     "down": "knex migrate:down",
+    
+    
+// ________________________________________
+    
+## **RESOURCES***
+
+Resource for Heroku and initial set up from scratch: https://www.youtube.com/watch?v=-mcM5GB8OIA&t=1901s
+
+Resource for creating a database from scratch, from unit 4.2: 
+
+Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
+
+Schema, Migrations, Seeds:
+Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
+
+Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
+
+&&
+
+Create Table Relationships Using Knex:
+Guided Project: https://www.youtube.com/watch?v=G0lEIBHxI1I 
+
+Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
+
+
+
+
+
+
+-----------------------------------------------------------------------------------

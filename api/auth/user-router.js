@@ -22,6 +22,23 @@ router.get('/', (req, res) => {
 });
 
 
+// Get user by id
+router.get('/:id', async (req, res) => {
+    const id = req.params.id;
+    console.log('@@@@@@@@@@@ id', id)
+
+    try {
+        const user = await Users.findById(id);
+        if (!user) {
+            res.status(404).json({ message: 'User not found' })
+        } else {
+            res.status(200).json(user)
+        }
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
 // Register
 router.post('/register', checkValidRegister, async (req, res) => {
     console.log('register route 1')
@@ -45,6 +62,7 @@ router.post('/register', checkValidRegister, async (req, res) => {
     }
 })
 
+
 // Login, uses a token generator
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;            // .logs Aurelius 1234
@@ -64,28 +82,6 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 })
-
-// Get user by id
-router.get('/:id', async (req, res) => {
-    const id = req.params.id;
-    console.log('@@@@@@@@@@@ id', id)
-
-    try {
-        const user = await Users.findById(id);
-        if (!user) {
-            res.status(404).json({ message: 'User not found' })
-        } else {
-            res.status(200).json(user)
-        }
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-})
-
-
-
-
-
 
 
 // Delete user by id

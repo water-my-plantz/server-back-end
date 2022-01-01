@@ -48,6 +48,27 @@ router.post('/addplant', async (req, res) => {
 })
 
 
+
+// Update plant data by id
+router.put('/:id', async (req, res) => {
+    // console.log('req.body', req.body)
+    const id = req.params.id;
+    const { species, nickname, water_frequency, plant_id, } = req.body;    // Take whatever the user types
+    const plantInfo = { species, nickname, water_frequency, plant_id }    // .logs = {species: 'testing species name', nickname: 'testing nickname', water_frequency: undefined, plant_id: 100}
+
+    // console.log('plantInfo', plantInfo)
+
+    try {
+        console.log('random word inside try block')
+        const updatedPlant = await Plants.updateById(id, plantInfo)
+        res.status(201).json(updatedPlant)
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
+
+
 // Delete plant data by id
 router.delete('/:id', async (req, res) => {
     const id = req.params.id;
@@ -68,32 +89,11 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
-// Update plant data by id
-router.put('/:id', async (req, res) => {
-    console.log('req.body', req.body)
-    const id = req.params.id;
-    const { species, nickname, water_frequency, plant_id, } = req.body;    // Take whatever the user types
-
-    const plantInfo = { species, nickname, water_frequency, plant_id }    // .logs = {species: 'testing species name', nickname: 'testing nickname', water_frequency: undefined, plant_id: 100}
-
-    console.log('plantInfo', plantInfo)
-
-    try {
-        console.log('random word inside try block')
-        const updatedPlant = await Plants.updateById(id, plantInfo)
-        res.status(201).json(updatedPlant)
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-})
-
-
-
-
-
 
 
 module.exports = router;
+
+
 
 
 
@@ -109,3 +109,82 @@ module.exports = router;
 //     - `image`: (optional)
 // 4. Authenticated `user` can view a list of created `plants`.  A `plant` can be deleted or selected to present `user` with a detail view where `user` can then update any property of the selected `plant`.
 // 5. Authenticated `user` can update their `phoneNumber` and `password`.
+
+
+
+
+// _______________________________________________
+
+
+
+
+// For reference here are some routes I have used in the past:
+
+// const express = require('express')
+// const Post = require('./post-model')
+
+// const router = express.Router()
+
+
+
+// function checkId(req, res, next) {
+//   next()
+// }
+
+// function checkPayload(req, res, next) {
+//   next()
+// }
+
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const data = await Post.get()
+//     res.json(data)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
+// router.get('/:id', checkId, async (req, res, next) => {
+//   try {
+//     const data = await Post.getById(req.params.id)
+//     res.json(data)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
+// router.post('/', checkPayload, async (req, res, next) => {
+//   try {
+//     const data = await Post.create(req.body)
+//     res.json(data)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
+// router.put('/:id', checkPayload, checkId, async (req, res, next) => {
+//   try {
+//     const data = await Post.update(req.params.id, req.body)
+//     res.json(data)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
+// router.delete('/:id', checkId, async (req, res, next) => {
+//   try {
+//     const data = await Post.remove(req.params.id)
+//     res.json(data)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+
+// router.use((err, req, res, next) => { // eslint-disable-line
+//   res.status(err.status || 500).json({
+//     message: err.message,
+//     stack: err.stack,
+//   })
+// })
+
+// module.exports = router
