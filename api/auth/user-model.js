@@ -4,35 +4,44 @@ module.exports = {
     findById,
     create,
     getAll,
-    findBy
+    findBy,
+    remove
 }
 
 
 function getAll() {
-    // console.log('getAll')
     return db('users')
 }
 
 
 function findBy(argFilter) {
     // console.log(typeof argFilter)
-    return db('users').where(argFilter).first(); //  without first it needs to be an array at the end point
+    return db('users').where(argFilter).first();            // without first it needs to be an array at the end point
 }
 
 
 function findById(idArg) {
-    return db("users").where({ id: idArg }).first(); //  always .first when you want 1 thing
+    return db("users").where({ id: idArg }).first();        // always .first when you want 1 thing
 }
 
 
 async function create(argTask) {
-    const [id] = await db('users').insert(argTask)
-    return findById(id)
+    const [user] = await db('users').insert(argTask, ['*']); // This was different due to being Postgres
+    return user
 }
 
 
 
 
+
+
+
+
+// delete function  // In SQL it looks like: DELETE FROM users WHERE id = 2;
+async function remove(id) {
+    const deletedUser = await db('users').where({ id: id }).del()
+    return deletedUser;
+}
 
 
 
@@ -274,7 +283,7 @@ async function create(argTask) {
 // // -- How to update multiple fields. Note, no trailing commas.
 
 // // UPDATE posts
-// // SET title = 'yeet', contents = 'jajajajaja'
+// // SET title = 'words', contents = 'more words'
 // // WHERE id = 1;
 
 

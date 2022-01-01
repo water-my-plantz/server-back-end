@@ -1,29 +1,45 @@
-## **RESOURCES***
+**ENDPOINTS** 
 
-Resource for Heroku and initial set up from scratch: https://www.youtube.com/watch?v=-mcM5GB8OIA&t=1901s
-
-Resource for creating a database from scratch, from unit 4.2: 
-
-Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
-
-Schema, Migrations, Seeds:
-Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
-
-Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
-
-&&
-
-Create Table Relationships Using Knex:
-Guided Project: https://www.youtube.com/watch?v=G0lEIBHxI1I 
-
-Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
+**___USERS___**
 
 
+**Gets all users:**
+GET = localhost:9000/user
+
+**Get user by id:**
+GET = localhost:9000/user/:id
+
+**Create a new user:**
+POST = localhost:9000/user/register
+
+**Log in user:**
+POST = localhost:9000/user/login
+
+**Delete user by id:**
+DELETE = localhost:9000/user/:id
+
+
+**___PLANTS___**
+
+**Gets all plant information:**
+GET = localhost:9000/plants
+
+**Get plant information by id:**
+GET = localhost:9000/plants/:id
+
+**Create plant information:**
+POST = localhost:9000/plants/addplant
+
+**UPDATE plant information by id:**
+PUT = localhost:9000/plants/:id
+
+**Delete plant information by id:**
+DELETE = localhost:9000/plants/:id
 
 
 
+**_________________________________________________**
 
------------------------------------------------------------------------------------
 
 
 
@@ -54,6 +70,30 @@ With an easy to use interface for creating a plant watering schedule tailored to
 1. Authenticated `user` can set up push notifications to be triggered when an `h2oFrequency` of any `plant` arrives / has elapsed. 
 2. Implement a feature that allows an authenticated `user` to see an appropriate suggested `h2oFrequency` based on `species` using the API of your choice. 
 3. Authenticated `user` can upload `image`s of a `plant`. If no user `image` is provided, a placeholder `image` of a plant of the same `species` populates the view.
+
+
+
+
+________________________________________
+
+// Simplest way to check a login, saving this for future reference.
+
+router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+
+
+    try {
+        const user = await Users.findBy({ username })   // console.log(user) = { id: 3, username: 'Cato', password: '1234' }
+
+        if (username == user.username) {
+            res.status(400).json(user)
+        }
+    }
+    catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
+
 
 
 
@@ -119,3 +159,33 @@ My old dependencies in case all else fails...
 
     "up": "knex migrate:up",
     "down": "knex migrate:down",
+    
+    
+// ________________________________________
+    
+## **RESOURCES***
+
+Resource for Heroku and initial set up from scratch: https://www.youtube.com/watch?v=-mcM5GB8OIA&t=1901s
+
+Resource for creating a database from scratch, from unit 4.2: 
+
+Legacy = https://learn-legacy.bloomtech.com/web4node/sprint/receFLR7MpwQXesIN
+
+Schema, Migrations, Seeds:
+Guided Project: https://www.youtube.com/watch?v=IDPswEgDino
+
+Solution: https://bloomtech-1.wistia.com/medias/3b4mk5id5d
+
+&&
+
+Create Table Relationships Using Knex:
+Guided Project: https://www.youtube.com/watch?v=G0lEIBHxI1I 
+
+Solution: https://bloomtech-1.wistia.com/medias/hlle9o4z0x
+
+
+
+
+
+
+-----------------------------------------------------------------------------------
