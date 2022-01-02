@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
 })
 
 
-// Create plant data
+// Create plant data.
 router.post('/addplant', async (req, res) => {
     const { species, nickname, water_frequency, plant_id } = req.body;    // Take whatever the user types
     const plantInfo = { species, nickname, water_frequency, plant_id }    // .logs = {species: 'testing species name', nickname: 'testing nickname', water_frequency: undefined, plant_id: 100}
@@ -49,7 +49,7 @@ router.post('/addplant', async (req, res) => {
 
 
 
-// Update plant data by id
+// Update plant data by id.
 router.put('/:id', async (req, res) => {
     // console.log('req.body', req.body)
     const id = req.params.id;

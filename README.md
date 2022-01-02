@@ -72,9 +72,8 @@ With an easy to use interface for creating a plant watering schedule tailored to
 3. Authenticated `user` can upload `image`s of a `plant`. If no user `image` is provided, a placeholder `image` of a plant of the same `species` populates the view.
 
 
+_______________PERSONAL NOTES BELOW________________
 
-
-________________________________________
 
 // Simplest way to check a login, saving this for future reference.
 
@@ -95,60 +94,23 @@ router.post('/login', async (req, res) => {
 })
 
 
+__Routes before Middleware (for reference)__
 
-
-_________________________________________
-
-
-From build week scaffolding video:
-
-{
-  "name": "build-week-scaffolding-node",
-  "version": "1.0.0",
-
-  "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js",
-    "seed": "knex seed:run",
-
-    "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
-
-
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
-    "migrateh": "heroku run knex migrate:latest -a YOUR_HEROKU_APP_NAME",
-    "rollbackh": "heroku run knex migrate:rollback -a YOUR_HEROKU_APP_NAME",
-    "databaseh": "heroku pg:psql -a YOUR_HEROKU_APP_NAME",
-    "seedh": "heroku run knex seed:run -a YOUR_HEROKU_APP_NAME",
-    "deploy": "git push heroku main"
-  },
-  "engines": {
-    "node": "16.13.1"
-  },
-  "license": "ISC",
-  "dependencies": {
-    "cors": "2.8.5",
-    "dotenv": "10.0.0",
-    "express": "4.17.1",
-    "helmet": "4.6.0",
-    "knex": "0.95.14",
-    "knex-cleaner": "1.3.1",
-    "pg": "8.7.1"
-  },
-  "devDependencies": {
-    "@types/jest": "27.0.3",
-    "cross-env": "7.0.3",
-    "eslint": "8.4.1",
-    "jest": "27.4.4",
-    "nodemon": "2.0.15",
-    "supertest": "6.1.6"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bloominstituteoftechnology/build-week-scaffolding-node.git"
-  }
-}
-
+// BEFORE MIDDLEWARE - FOR REFERENCE
+// Get user by id
+// router.get('/:id', async (req, res) => {
+//     const id = req.params.id;
+//     try {
+//         const user = await Users.findById(id);
+//         if (!user) {
+//             res.status(404).json({ message: 'User not found' })
+//         } else {
+//             res.status(200).json(user)
+//         }
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
 
 
 

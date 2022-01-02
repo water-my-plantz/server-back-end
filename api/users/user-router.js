@@ -7,9 +7,11 @@ const { JWT_SECRET } = require('../../secrets'); // Some have BCRYPT_ROUNDS, not
 
 const { checkValidRegister } = require('../middleware/restricted'); // This is a middleware
 
+const { checkId } = require('../middleware/middleware.js');
 
 
-// Gets all users = localhost:9000/api/auth
+
+// Gets all users = localhost:9000/user
 router.get('/', (req, res) => {
     console.log('Get route...')
     Users.getAll()
@@ -22,40 +24,29 @@ router.get('/', (req, res) => {
 });
 
 
-// Get user by id
-router.get('/:id', async (req, res) => {
-    const id = req.params.id;
-    console.log('@@@@@@@@@@@ id', id)
-
-    try {
-        const user = await Users.findById(id);
-        if (!user) {
-            res.status(404).json({ message: 'User not found' })
-        } else {
-            res.status(200).json(user)
-        }
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+// Get user by id.
+router.get('/:id', checkId, async (req, res) => {
+    const user = await Users.findById(req.params.id)
+    res.status(200).json(user)
 })
 
-// Register
+
+// Register a new user.
 router.post('/register', checkValidRegister, async (req, res) => {
-    console.log('register route 1')
+    // console.log('register route 1')
     const { username, password } = req.body;       // Take whatever the user types
     const user = { username, password }
 
-    console.log('user.password', user.password)
+    // console.log('user.password', user.password)
     const hash = bcrypt.hashSync(user.password, 6);
     user.password = hash;
 
     try {
-        console.log('register route 2')
-        console.log('user', user)
-
+        // console.log('register route 2')
+        // console.log('user', user)
         const createdUser = await Users.create(user) // create = Knex* db('users').insert(user)
 
-        console.log('register route 3')
+        // console.log('register route 3')
         res.status(201).json(createdUser)
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -63,7 +54,7 @@ router.post('/register', checkValidRegister, async (req, res) => {
 })
 
 
-// Login, uses a token generator
+// Login a user. Uses a token generator
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;            // .logs Aurelius 1234
 
@@ -87,14 +78,11 @@ router.post('/login', async (req, res) => {
 // Delete user by id
 router.delete('/:id', async (req, res) => {
     const id = req.params.id;
-
-    console.log('id', id)
+    // console.log('id', id)
 
     try {
         const user = await Users.remove(id);
-        console.log('bleh')
-        console.log('user', user)
-
+        // console.log('user', user)
         if (!user) {
             res.status(404).json({ message: 'User not found' })
         } else {
