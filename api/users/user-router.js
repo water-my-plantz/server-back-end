@@ -5,34 +5,30 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')              // installed this library // used in token builder
 const { JWT_SECRET } = require('../../secrets'); // Some have BCRYPT_ROUNDS, not sure why
 
-// const { checkValidRegister } = require('../middleware/restricted'); // This is a middleware
 const { checkId, checkValidRegister } = require('./user-middleware');
 
 
 
-// Gets all users = localhost:9000/user
-router.get('/', (req, res) => {
-    console.log('Get route...')
-    Users.getAll()
-        .then(users => {
-            res.status(200).json(users)
-        })
-        .catch(error => {
-            res.status(500).json({ message: 'Failed to get users', error })
-        })
-});
+// Gets all users. = localhost:9000/user
+router.get('/', async (req, res) => {
+    try {
+        const users = await Users.getAll()
+        res.status(200).json(users)
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+})
 
 
-// Get user by id.
+// Get user by id. = localhost:9000/user/:id
 router.get('/:id', checkId, async (req, res) => {
     const user = await Users.findById(req.params.id)
     res.status(200).json(user)
 })
 
 
-// Register a new user.
+// Register a new user. = localhost:9000/user/register
 router.post('/register', checkValidRegister, async (req, res) => {
-    // console.log('register route 1')
     const { username, password } = req.body;       // Take whatever the user types
     const user = { username, password }
     // console.log('user.password', user.password)
@@ -40,10 +36,7 @@ router.post('/register', checkValidRegister, async (req, res) => {
     user.password = hash;
 
     try {
-        // console.log('register route 2')
-        // console.log('user', user)
         const createdUser = await Users.create(user) // create = Knex* db('users').insert(user)
-        // console.log('register route 3')
         res.status(201).json(createdUser)
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -51,7 +44,8 @@ router.post('/register', checkValidRegister, async (req, res) => {
 })
 
 
-// Login a user. Uses a token generator
+// Login a user. = localhost:9000/user/login
+// Uses a token generator
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;            // .logs Aurelius 1234
 
@@ -72,7 +66,7 @@ router.post('/login', async (req, res) => {
 })
 
 
-// Delete user by id
+// Delete user by id. = localhost:9000/user/:id
 router.delete('/:id', checkId, async (req, res) => {
     await Users.remove(req.params.id);
     res.status(200).json('User has been deleted')
@@ -81,13 +75,8 @@ router.delete('/:id', checkId, async (req, res) => {
 
 
 
-
-
-
-
-
-
-function generateToken(user) {                          // Token generator. 
+// Token generator to be used in LOGIN above. 
+function generateToken(user) {
     const payload = {
         sub: user.id,                                   // subject, normally the user id
         username: user.username,                        // Custom property

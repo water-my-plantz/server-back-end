@@ -76,7 +76,20 @@ With an easy to use interface for creating a plant watering schedule tailored to
 
 
 
-_______________PERSONAL NOTES BELOW________________
+<!-- _______________PERSONAL NOTES BELOW________________ -->
+
+//The .then promise that I no longer use, saved for reference.
+// Gets all plant info = localhost:9000/plants
+// router.get('/', (req, res) => {
+//     console.log('Get route...')
+//     Plants.getAll()
+//         .then(plants => {
+//             res.status(200).json(plants)
+//         })
+//         .catch(error => {
+//             res.status(500).json({ message: 'Failed to get users', error })
+//         })
+// });
 
 
 // Simplest way to check a login, saving this for future reference.

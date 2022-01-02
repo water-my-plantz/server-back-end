@@ -18,6 +18,7 @@ async function checkId(req, res, next) {
 }
 
 
+// I can add more logical conditions, like certain lengths, typeof, etc.
 // Checks payload for required fields.
 async function checkPayload(req, res, next) {
     const payload = req.body;

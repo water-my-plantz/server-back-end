@@ -3,49 +3,45 @@ const Plants = require('./plants-model');
 const { checkId, checkPayload } = require('./plants-middleware');
 
 
-// Gets all plant info = localhost:9000/plants
-router.get('/', (req, res) => {
-    console.log('Get route...')
-    Plants.getAll()
-        .then(plants => {
-            res.status(200).json(plants)
-        })
-        .catch(error => {
-            res.status(500).json({ message: 'Failed to get users', error })
-        })
-});
+
+// Gets all plant info. = localhost:9000/plants
+router.get('/', async (req, res) => {
+    try {
+        const plants = await Plants.getAll()
+        res.status(200).json(plants)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
+})
 
 
-// Get by plant id = localhost:9000/plants/:id
+// Get by plant id. = localhost:9000/plants/:id
 router.get('/:id', checkId, async (req, res) => {
-    const plantData = await Plants.findById(req.params.id);
+    const plantData = await Plants.findById(req.params.id)
     res.status(200).json(plantData)
 })
 
 
-// Update plant data by id.
-router.put('/:id', checkId, async (req, res) => {
-    const updatedPlant = await Plants.updateById(req.params.id, req.body)
-    res.status(200).json(updatedPlant)
-})
-
-
-// Create plant data.
+// Create plant data. = localhost:9000/plants/addplant
 router.post('/addplant', checkPayload, async (req, res) => {
     const createdPlant = await Plants.create(req.body)
     res.status(201).json(createdPlant)
 })
 
 
-// Delete plant data by id
+// Update plant data by id. = localhost:9000/plants/:id
+router.put('/:id', checkId, async (req, res) => {
+    const updatedPlant = await Plants.updateById(req.params.id, req.body)
+    res.status(200).json(updatedPlant)
+})
+
+
+// Delete plant data by id. = localhost:9000/plants/:id
 router.delete('/:id', checkId, async (req, res) => {
     const id = req.params.id;
     await Plants.remove(id)
     res.status(204).json(`Plant id: ${id} information has been removed.`)
 })
-
-
-
 
 
 
