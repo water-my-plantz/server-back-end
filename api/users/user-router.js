@@ -5,9 +5,8 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')              // installed this library // used in token builder
 const { JWT_SECRET } = require('../../secrets'); // Some have BCRYPT_ROUNDS, not sure why
 
-const { checkValidRegister } = require('../middleware/restricted'); // This is a middleware
-
-const { checkId } = require('../middleware/middleware.js');
+// const { checkValidRegister } = require('../middleware/restricted'); // This is a middleware
+const { checkId, checkValidRegister } = require('./user-middleware');
 
 
 
@@ -36,7 +35,6 @@ router.post('/register', checkValidRegister, async (req, res) => {
     // console.log('register route 1')
     const { username, password } = req.body;       // Take whatever the user types
     const user = { username, password }
-
     // console.log('user.password', user.password)
     const hash = bcrypt.hashSync(user.password, 6);
     user.password = hash;
@@ -45,7 +43,6 @@ router.post('/register', checkValidRegister, async (req, res) => {
         // console.log('register route 2')
         // console.log('user', user)
         const createdUser = await Users.create(user) // create = Knex* db('users').insert(user)
-
         // console.log('register route 3')
         res.status(201).json(createdUser)
     } catch (err) {
@@ -76,22 +73,11 @@ router.post('/login', async (req, res) => {
 
 
 // Delete user by id
-router.delete('/:id', async (req, res) => {
-    const id = req.params.id;
-    // console.log('id', id)
-
-    try {
-        const user = await Users.remove(id);
-        // console.log('user', user)
-        if (!user) {
-            res.status(404).json({ message: 'User not found' })
-        } else {
-            res.status(200).json('USER DELETED!')
-        }
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+router.delete('/:id', checkId, async (req, res) => {
+    await Users.remove(req.params.id);
+    res.status(200).json('User has been deleted')
 })
+
 
 
 
@@ -105,7 +91,7 @@ function generateToken(user) {                          // Token generator.
     const payload = {
         sub: user.id,                                   // subject, normally the user id
         username: user.username,                        // Custom property
-        role: user.role,                                // ????????????????????????
+        role: user.role,                                // ?
     }
     const options = {
         expiresIn: '12d',

@@ -72,6 +72,10 @@ With an easy to use interface for creating a plant watering schedule tailored to
 3. Authenticated `user` can upload `image`s of a `plant`. If no user `image` is provided, a placeholder `image` of a plant of the same `species` populates the view.
 
 
+
+
+
+
 _______________PERSONAL NOTES BELOW________________
 
 
@@ -114,6 +118,95 @@ __Routes before Middleware (for reference)__
 
 
 
+// BEFORE MIDDLEWARE, SAVING FOR REFERENCE
+// Delete user by id
+// router.delete('/:id', async (req, res) => {
+//     const id = req.params.id;
+//     // console.log('id', id)
+
+//     try {
+//         const user = await Users.remove(id);
+//         // console.log('user', user)
+//         if (!user) {
+//             res.status(404).json({ message: 'User not found' })
+//         } else {
+//             res.status(200).json('USER DELETED!')
+//         }
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
+
+
+
+
+
+// BEFORE MIDDLEWARE = FOR REFERENCE
+// // Update plant data by id.
+// router.put('/:id', async (req, res) => {
+//     // console.log('req.body', req.body)
+//     const id = req.params.id;
+//     const { species, nickname, water_frequency, plant_id, } = req.body;    // Take whatever the user types
+//     const plantInfo = { species, nickname, water_frequency, plant_id }    // .logs = {species: 'testing species name', nickname: 'testing nickname', water_frequency: undefined, plant_id: 100}
+
+//     // console.log('plantInfo', plantInfo)
+
+//     try {
+//         console.log('random word inside try block')
+//         const updatedPlant = await Plants.updateById(id, plantInfo)
+//         res.status(201).json(updatedPlant)
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
+
+
+// BEFORE MIDDLEWARE = FOR REFERENCE
+// Get by plant id = localhost:9000/plants/:id
+// router.get('/:id', async (req, res) => {
+//     const id = req.params.id;
+//     console.log('@@@@@@@@@@@ id', id)
+
+//     try {
+//         const plantData = await Plants.findById(id);
+//         if (!plantData) {
+//             res.status(404).json({ message: 'User not found' })
+//         } else {
+//             res.status(200).json(plantData)
+//         }
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
+
+
+
+// BEFORE MIDDLEWARE = FOR REFERENCE
+// // Delete plant data by id
+// router.delete('/:id', async (req, res) => {
+//     const id = req.params.id;
+//     try {
+//         const plantData = await Plants.remove(id);
+//         console.log('user', plantData)
+
+//         if (!plantData) {
+//             res.status(404).json({ message: 'Plant information not found' })
+//         } else {
+//             res.status(200).json('PLANT INFORMATION DELETED!')
+//         }
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
+
+
+
+
+
+
+
+
+
 
 // _____________________
 
@@ -123,7 +216,7 @@ My old dependencies in case all else fails...
     "down": "knex migrate:down",
     
     
-// ________________________________________
+// _____________________
     
 ## **RESOURCES***
 
