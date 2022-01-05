@@ -1,16 +1,15 @@
 const router = require('express').Router();
+const bcrypt = require('bcryptjs')
+
 const Users = require('./user-model')
 const generateToken = require('./token-generator')
-
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')              // installed this library // used in token builder
-const { JWT_SECRET } = require('../../secrets'); // Some have BCRYPT_ROUNDS, not sure why
-
 const { checkId, checkValidRegister } = require('./user-middleware');
+const restricted = require("./restricted-middleware")
+
 
 
 // Gets all users. = localhost:9000/user
-router.get('/', async (req, res) => {
+router.get('/', restricted, async (req, res) => {
     try {
         const users = await Users.getAll()
         res.status(200).json(users)
@@ -44,8 +43,8 @@ router.post('/register', checkValidRegister, async (req, res) => {
 })
 
 
+// Uses a token generator*
 // Login a user. = localhost:9000/user/login
-// Uses a token generator
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;            // .logs Aurelius 1234
 

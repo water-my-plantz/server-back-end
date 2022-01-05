@@ -1,4 +1,5 @@
-
+const jwt = require('jsonwebtoken')                     // installed this library // used in token builder
+const { JWT_SECRET } = require('../../config');         // Some have BCRYPT_ROUNDS, not sure why
 
 module.exports = function (user) {
     const payload = {
