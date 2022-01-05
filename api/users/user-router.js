@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const Users = require('./user-model')
+const generateToken = require('./token-generator')
 
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')              // installed this library // used in token builder
 const { JWT_SECRET } = require('../../secrets'); // Some have BCRYPT_ROUNDS, not sure why
 
 const { checkId, checkValidRegister } = require('./user-middleware');
-
 
 
 // Gets all users. = localhost:9000/user
@@ -71,22 +71,6 @@ router.delete('/:id', checkId, async (req, res) => {
     await Users.remove(req.params.id);
     res.status(200).json('User has been deleted')
 })
-
-
-
-
-// Token generator to be used in LOGIN above. 
-function generateToken(user) {
-    const payload = {
-        sub: user.id,                                   // subject, normally the user id
-        username: user.username,                        // Custom property
-        role: user.role,                                // ?
-    }
-    const options = {
-        expiresIn: '12d',
-    }
-    return jwt.sign(payload, JWT_SECRET, options);      // JWT_SECRET is an import
-}
 
 
 
