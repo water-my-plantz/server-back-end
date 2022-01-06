@@ -10,6 +10,9 @@ const restricted = require("./restricted-middleware")
 
 // Gets all users. = localhost:9000/user
 router.get('/', restricted, async (req, res) => {
+
+    console.log(`The username is ${req.decodedToken.username}`)
+
     try {
         const users = await Users.getAll()
         res.status(200).json(users)

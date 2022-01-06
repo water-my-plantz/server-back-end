@@ -15,7 +15,7 @@ const { JWT_SECRET } = require('../../config')
 module.exports = function (req, res, next) {
 
     const token = req.headers.authorization
-    console.log('token ======', token)
+    // console.log('token ======', token)
 
     if (!token) {
         return res.status(404).json({ message: 'Token not found' })
