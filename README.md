@@ -3,37 +3,37 @@
 **___USERS___**
 
 
-**Gets all users:**
+Gets all users:
 GET = localhost:9000/user
 
-**Get user by id:**
+Get user by id:
 GET = localhost:9000/user/:id
 
-**Create a new user:**
+Create a new user:
 POST = localhost:9000/user/register
 
-**Log in user:**
+Log in user:
 POST = localhost:9000/user/login
 
-**Delete user by id:**
+Delete user by id:
 DELETE = localhost:9000/user/:id
 
 
 **___PLANTS___**
 
-**Gets all plant information:**
+Gets all plant information:
 GET = localhost:9000/plants
 
-**Get plant information by id:**
+Get plant information by id:
 GET = localhost:9000/plants/:id
 
-**Create plant information:**
+Create plant information:
 POST = localhost:9000/plants/addplant
 
-**UPDATE plant information by id:**
+UPDATE plant information by id:
 PUT = localhost:9000/plants/:id
 
-**Delete plant information by id:**
+Delete plant information by id:
 DELETE = localhost:9000/plants/:id
 
 
