@@ -15,7 +15,7 @@ exports.up = async function (knex) {
     })
         .createTable('plants', table => {
             table.increments()
-            table.integer('plant_id').notNullable()
+            table.text('image')
             table.text('species')
             table.text('nickname')
             table.text('water_frequency')
