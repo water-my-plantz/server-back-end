@@ -1,3 +1,4 @@
+const { json } = require('express/lib/response');
 const Users = require('./user-model.js');
 
 
@@ -19,23 +20,22 @@ async function checkId(req, res, next) {
 
 
 
-
-
 checkValidRegister = async (req, res, next) => {
 
     await console.log('THIS WORKS?')
     try {
         const { username, password } = await req.body;
-        console.log('username, password in middleware', username, password);
-        const valid = Boolean(username && password);
+        console.log('inside checkValidRegister')
 
-        if (valid) {
-            next();
+        if (username === undefined || typeof username !== 'string' || !username.trim()
+            || password === undefined || typeof password !== 'string' || !password.trim()
+        ) {
+            res.status(400).json({
+                message: err.message,
+                massage: 'Proper username and password required.'
+            })
         } else {
-            next({
-                status: 422,
-                message: 'You have made an invalid request',
-            });
+            next();
         }
     } catch (err) {
         res.status(500).json({ message: err.message });
