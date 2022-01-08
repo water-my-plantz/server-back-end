@@ -26,6 +26,22 @@ exports.seed = function (knex, Promise) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // table.integer('plant_id').notNullable()
 // table.text('species')
 // table.text('nickname')
