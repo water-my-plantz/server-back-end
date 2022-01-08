@@ -1,92 +1,46 @@
 const router = require('express').Router();
 const Plants = require('./plants-model');
+const { checkId, checkPayload } = require('./plants-middleware');
 
 
-// Gets all plant info = localhost:9000/api/plants
-router.get('/', (req, res) => {
-    console.log('Get route...')
-    Plants.getAll()
-        .then(plants => {
-            res.status(200).json(plants)
-        })
-        .catch(error => {
-            res.status(500).json({ message: 'Failed to get users', error })
-        })
-});
 
-
-// Get by plant id = localhost:9000/api/plants/:id
-router.get('/:id', async (req, res) => {
-    const id = req.params.id;
-    console.log('@@@@@@@@@@@ id', id)
-
+// Gets all plant info. = localhost:9000/plants
+router.get('/', async (req, res) => {
     try {
-        const plantData = await Plants.findById(id);
-        if (!plantData) {
-            res.status(404).json({ message: 'User not found' })
-        } else {
-            res.status(200).json(plantData)
-        }
+        const plants = await Plants.getAll()
+        res.status(200).json(plants)
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).json({ message: err.message })
     }
 })
 
 
-// Create plant data
-router.post('/addplant', async (req, res) => {
-    const { species, nickname, water_frequency, plant_id } = req.body;    // Take whatever the user types
-    const plantInfo = { species, nickname, water_frequency, plant_id }    // .logs = {species: 'testing species name', nickname: 'testing nickname', water_frequency: undefined, plant_id: 100}
-
-    try {
-        // console.log('random word inside try block')
-        const createdPlant = await Plants.create(plantInfo)
-        res.status(201).json(createdPlant)
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+// Get by plant id. = localhost:9000/plants/:id
+router.get('/:id', checkId, async (req, res) => {
+    const plantData = await Plants.findById(req.params.id)
+    res.status(200).json(plantData)
 })
 
 
-
-// Update plant data by id
-router.put('/:id', async (req, res) => {
-    // console.log('req.body', req.body)
-    const id = req.params.id;
-    const { species, nickname, water_frequency, plant_id, } = req.body;    // Take whatever the user types
-    const plantInfo = { species, nickname, water_frequency, plant_id }    // .logs = {species: 'testing species name', nickname: 'testing nickname', water_frequency: undefined, plant_id: 100}
-
-    // console.log('plantInfo', plantInfo)
-
-    try {
-        console.log('random word inside try block')
-        const updatedPlant = await Plants.updateById(id, plantInfo)
-        res.status(201).json(updatedPlant)
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+// Create plant data. = localhost:9000/plants/addplant
+router.post('/addplant', checkPayload, async (req, res) => {
+    const createdPlant = await Plants.create(req.body)
+    res.status(201).json(createdPlant)
 })
 
 
+// Update plant data by id. = localhost:9000/plants/:id
+router.put('/:id', checkId, async (req, res) => {
+    const updatedPlant = await Plants.updateById(req.params.id, req.body)
+    res.status(200).json(updatedPlant)
+})
 
-// Delete plant data by id
-router.delete('/:id', async (req, res) => {
+
+// Delete plant data by id. = localhost:9000/plants/:id
+router.delete('/:id', checkId, async (req, res) => {
     const id = req.params.id;
-
-    console.log('id', id)
-
-    try {
-        const plantData = await Plants.remove(id);
-        console.log('user', plantData)
-
-        if (!plantData) {
-            res.status(404).json({ message: 'Plant information not found' })
-        } else {
-            res.status(200).json('PLANT INFORMATION DELETED!')
-        }
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+    await Plants.remove(id)
+    res.status(204).json(`Plant id: ${id} information has been removed.`)
 })
 
 

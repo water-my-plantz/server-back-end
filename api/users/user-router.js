@@ -6,7 +6,10 @@ const generateToken = require('./token-generator')
 const { checkId, checkValidRegister } = require('./user-middleware');
 const restricted = require("./restricted-middleware")
 
+
 // Authorization/access, not being used here but if we had a role field with user and admin, 
+
+
 // we could use this to see who has access to what.
 // const only = (role) => (req, res, next) => {
 //     if (req.decodedToken.role === role) {
