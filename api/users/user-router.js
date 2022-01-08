@@ -6,6 +6,15 @@ const generateToken = require('./token-generator')
 const { checkId, checkValidRegister } = require('./user-middleware');
 const restricted = require("./restricted-middleware")
 
+// Authoirization/access, not being used here but if we had a role field with user and admin, 
+// we could use this to see who has access to what.
+// const only = (role) => (req, res, next) => {
+//     if (req.decodedToken.role === role) {
+//         next()
+//     } else {
+//         next({ status: 403, message: 'Only admins have access.' })
+//     }
+// }
 
 
 // Gets all users. = localhost:9000/user
@@ -39,7 +48,16 @@ router.post('/register', checkValidRegister, async (req, res) => {
 
     try {
         const createdUser = await Users.create(user) // create = Knex* db('users').insert(user)
-        res.status(201).json(createdUser)
+
+
+        if (password.length) {
+
+            console.log('hmmmmmmmmmmmmmmmmmmmmm')
+
+            res.status(201).json(createdUser)
+
+        }
+
     } catch (err) {
         res.status(500).json({ message: err.message });
     }

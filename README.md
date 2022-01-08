@@ -4,37 +4,37 @@
 
 
 Gets all users:
-GET = localhost:9000/user
+GET = https://water-my-plants-fullstack-api.herokuapp.com/user
 
 Get user by id:
-GET = localhost:9000/user/:id
+GET = https://water-my-plants-fullstack-api.herokuapp.com/user/:id
 
 Create a new user:
-POST = localhost:9000/user/register
+POST = https://water-my-plants-fullstack-api.herokuapp.com/user/register
 
 Log in user:
-POST = localhost:9000/user/login
+POST = https://water-my-plants-fullstack-api.herokuapp.com/user/login
 
 Delete user by id:
-DELETE = localhost:9000/user/:id
+DELETE = https://water-my-plants-fullstack-api.herokuapp.com/user/:id
 
 
 **___PLANTS___**
 
 Gets all plant information:
-GET = localhost:9000/plants
+GET = https://water-my-plants-fullstack-api.herokuapp.com/plants
 
 Get plant information by id:
-GET = localhost:9000/plants/:id
+GET = https://water-my-plants-fullstack-api.herokuapp.com/plants/:id
 
 Create plant information:
-POST = localhost:9000/plants/addplant
+POST = https://water-my-plants-fullstack-api.herokuapp.com/plants/addplant
 
 UPDATE plant information by id:
-PUT = localhost:9000/plants/:id
+PUT = https://water-my-plants-fullstack-api.herokuapp.com/plants/:id
 
 Delete plant information by id:
-DELETE = localhost:9000/plants/:id
+DELETE = https://water-my-plants-fullstack-api.herokuapp.com/plants/:id
 
 
 
