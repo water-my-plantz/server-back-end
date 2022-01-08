@@ -3,38 +3,38 @@
 **___USERS___**
 
 
-**Gets all users:**
-GET = localhost:9000/user
+Gets all users:
+GET = https://water-my-plants-fullstack-api.herokuapp.com/user
 
-**Get user by id:**
-GET = localhost:9000/user/:id
+Get user by id:
+GET = https://water-my-plants-fullstack-api.herokuapp.com/user/:id
 
-**Create a new user:**
-POST = localhost:9000/user/register
+Create a new user:
+POST = https://water-my-plants-fullstack-api.herokuapp.com/user/register
 
-**Log in user:**
-POST = localhost:9000/user/login
+Log in user:
+POST = https://water-my-plants-fullstack-api.herokuapp.com/user/login
 
-**Delete user by id:**
-DELETE = localhost:9000/user/:id
+Delete user by id:
+DELETE = https://water-my-plants-fullstack-api.herokuapp.com/user/:id
 
 
 **___PLANTS___**
 
-**Gets all plant information:**
-GET = localhost:9000/plants
+Gets all plant information:
+GET = https://water-my-plants-fullstack-api.herokuapp.com/plants
 
-**Get plant information by id:**
-GET = localhost:9000/plants/:id
+Get plant information by id:
+GET = https://water-my-plants-fullstack-api.herokuapp.com/plants/:id
 
-**Create plant information:**
-POST = localhost:9000/plants/addplant
+Create plant information:
+POST = https://water-my-plants-fullstack-api.herokuapp.com/plants/addplant
 
-**UPDATE plant information by id:**
-PUT = localhost:9000/plants/:id
+UPDATE plant information by id:
+PUT = https://water-my-plants-fullstack-api.herokuapp.com/plants/:id
 
-**Delete plant information by id:**
-DELETE = localhost:9000/plants/:id
+Delete plant information by id:
+DELETE = https://water-my-plants-fullstack-api.herokuapp.com/plants/:id
 
 
 
@@ -74,7 +74,23 @@ With an easy to use interface for creating a plant watering schedule tailored to
 
 
 
-________________________________________
+
+
+<!-- _______________PERSONAL NOTES BELOW________________ -->
+
+//The .then promise that I no longer use, saved for reference.
+// Gets all plant info = localhost:9000/plants
+// router.get('/', (req, res) => {
+//     console.log('Get route...')
+//     Plants.getAll()
+//         .then(plants => {
+//             res.status(200).json(plants)
+//         })
+//         .catch(error => {
+//             res.status(500).json({ message: 'Failed to get users', error })
+//         })
+// });
+
 
 // Simplest way to check a login, saving this for future reference.
 
@@ -95,59 +111,111 @@ router.post('/login', async (req, res) => {
 })
 
 
+__Routes before Middleware (for reference)__
+
+// BEFORE MIDDLEWARE - FOR REFERENCE
+// Get user by id
+// router.get('/:id', async (req, res) => {
+//     const id = req.params.id;
+//     try {
+//         const user = await Users.findById(id);
+//         if (!user) {
+//             res.status(404).json({ message: 'User not found' })
+//         } else {
+//             res.status(200).json(user)
+//         }
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
 
 
-_________________________________________
+
+// BEFORE MIDDLEWARE, SAVING FOR REFERENCE
+// Delete user by id
+// router.delete('/:id', async (req, res) => {
+//     const id = req.params.id;
+//     // console.log('id', id)
+
+//     try {
+//         const user = await Users.remove(id);
+//         // console.log('user', user)
+//         if (!user) {
+//             res.status(404).json({ message: 'User not found' })
+//         } else {
+//             res.status(200).json('USER DELETED!')
+//         }
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
 
 
-From build week scaffolding video:
-
-{
-  "name": "build-week-scaffolding-node",
-  "version": "1.0.0",
-
-  "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js",
-    "seed": "knex seed:run",
-
-    "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
 
 
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
-    "migrateh": "heroku run knex migrate:latest -a YOUR_HEROKU_APP_NAME",
-    "rollbackh": "heroku run knex migrate:rollback -a YOUR_HEROKU_APP_NAME",
-    "databaseh": "heroku pg:psql -a YOUR_HEROKU_APP_NAME",
-    "seedh": "heroku run knex seed:run -a YOUR_HEROKU_APP_NAME",
-    "deploy": "git push heroku main"
-  },
-  "engines": {
-    "node": "16.13.1"
-  },
-  "license": "ISC",
-  "dependencies": {
-    "cors": "2.8.5",
-    "dotenv": "10.0.0",
-    "express": "4.17.1",
-    "helmet": "4.6.0",
-    "knex": "0.95.14",
-    "knex-cleaner": "1.3.1",
-    "pg": "8.7.1"
-  },
-  "devDependencies": {
-    "@types/jest": "27.0.3",
-    "cross-env": "7.0.3",
-    "eslint": "8.4.1",
-    "jest": "27.4.4",
-    "nodemon": "2.0.15",
-    "supertest": "6.1.6"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bloominstituteoftechnology/build-week-scaffolding-node.git"
-  }
-}
+
+// BEFORE MIDDLEWARE = FOR REFERENCE
+// // Update plant data by id.
+// router.put('/:id', async (req, res) => {
+//     // console.log('req.body', req.body)
+//     const id = req.params.id;
+//     const { species, nickname, water_frequency, plant_id, } = req.body;    // Take whatever the user types
+//     const plantInfo = { species, nickname, water_frequency, plant_id }    // .logs = {species: 'testing species name', nickname: 'testing nickname', water_frequency: undefined, plant_id: 100}
+
+//     // console.log('plantInfo', plantInfo)
+
+//     try {
+//         console.log('random word inside try block')
+//         const updatedPlant = await Plants.updateById(id, plantInfo)
+//         res.status(201).json(updatedPlant)
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
+
+
+// BEFORE MIDDLEWARE = FOR REFERENCE
+// Get by plant id = localhost:9000/plants/:id
+// router.get('/:id', async (req, res) => {
+//     const id = req.params.id;
+//     console.log('@@@@@@@@@@@ id', id)
+
+//     try {
+//         const plantData = await Plants.findById(id);
+//         if (!plantData) {
+//             res.status(404).json({ message: 'User not found' })
+//         } else {
+//             res.status(200).json(plantData)
+//         }
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
+
+
+
+// BEFORE MIDDLEWARE = FOR REFERENCE
+// // Delete plant data by id
+// router.delete('/:id', async (req, res) => {
+//     const id = req.params.id;
+//     try {
+//         const plantData = await Plants.remove(id);
+//         console.log('user', plantData)
+
+//         if (!plantData) {
+//             res.status(404).json({ message: 'Plant information not found' })
+//         } else {
+//             res.status(200).json('PLANT INFORMATION DELETED!')
+//         }
+//     } catch (err) {
+//         res.status(500).json({ message: err.message });
+//     }
+// })
+
+
+
+
+
 
 
 
@@ -161,7 +229,7 @@ My old dependencies in case all else fails...
     "down": "knex migrate:down",
     
     
-// ________________________________________
+// _____________________
     
 ## **RESOURCES***
 

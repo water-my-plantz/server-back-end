@@ -3,7 +3,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
 
-const userRouter = require('./auth/user-router');
+const userRouter = require('./users/user-router');
 const plantsRouter = require('./plants/plants-router');
 
 const server = express();
