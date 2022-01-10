@@ -25,8 +25,7 @@ async function checkPayload(req, res, next) {
     try {
         if (!payload.species ||
             !payload.nickname ||
-            !payload.water_frequency ||
-            !payload.plant_id) {
+            !payload.water_frequency) {
             res.status(400).json({ message: 'Payload is missing.' });
         } else {
             next()
