@@ -1,3 +1,7 @@
+
+VERCEL link:
+https://water-my-plants-frontend-9pixds0px-water-my-plantz.vercel.app/
+
 **ENDPOINTS** 
 
 **___USERS___**
