@@ -51,14 +51,9 @@ router.post('/register', checkValidRegister, async (req, res) => {
 
     try {
         const createdUser = await Users.create(user) // create = Knex* db('users').insert(user)
-
-
+        const token = generateToken(createdUser);    // maybe..... Just added.... 
         if (password.length) {
-
-            console.log('hmmmmmmmmmmmmmmmmmmmmm')
-
-            res.status(201).json(createdUser)
-
+            res.status(201).json({ createdUser, token })
         }
 
     } catch (err) {
@@ -77,7 +72,11 @@ router.post('/login', async (req, res) => {
 
         if (user && bcrypt.compareSync(password, user.password)) {
             const token = generateToken(user);          // .logs = eyJhbGciOiJIUzI1NiIsInR5cCI6...
-            res.status(200).json({ message: `Welcome back ${user.username} with id of ${user.id}`, token })
+            res.status(200).json({
+                username: user.username,
+                id: user.id,
+                token: token
+            })
 
         } else {
             res.status(401).json({ message: 'Invalid Credentials' })
